@@ -33,7 +33,7 @@
                   <td>{{ $item->quantity }}</td>
                   <td>{{ ucfirst($item->condition) }}</td>
                   <td>
-                    @if ($item->itemLocations->count())
+                    @if ($item->itemLocations && $item->itemLocations->count())
                     {{ implode(', ', $item->itemLocations->pluck('location.location')->toArray()) }}
                     @else
                     Belum Ditempatkan

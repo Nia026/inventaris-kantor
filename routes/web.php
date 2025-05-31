@@ -9,10 +9,6 @@ Route::get('/', function () {
     return view('landing');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/dashboard', [ItemController::class, 'dashboard'])
     ->middleware('auth')
     ->name('dashboard');
@@ -28,6 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('items', ItemController::class);
+
+    Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+    Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
 });
 
 require __DIR__ . '/auth.php';
